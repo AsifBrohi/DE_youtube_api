@@ -1,1 +1,5 @@
-# Youtube API
+# Youtube API ETL pipeline
+
+# Background
+
+# Architecture 
