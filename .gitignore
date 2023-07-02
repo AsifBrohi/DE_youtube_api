@@ -1,11 +1,12 @@
 env
 youtube_api.ipynb
 __pycache__
-youtube_data.csv
+raw_youtube_data.csv
 terraform/.terraform
 terraform/terraform.tfstate
 terraform/.terraform.lock.hcl
 terraform/terraform.tfstate.backup
 airflow/logs
 airflow/dags/__pycache__
+airflow/google
 
