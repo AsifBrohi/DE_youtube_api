@@ -9,7 +9,8 @@
 
 ## Architecture 
 
-![image](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/604015d6-1337-485e-bfbf-65fe00b05ce7)
+![youtube_api_workflow (3) drawio](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/d2ba326e-a0e4-4e00-b8eb-e7d09de2a5fa)
+
 
 ## Airflow DAG
 
