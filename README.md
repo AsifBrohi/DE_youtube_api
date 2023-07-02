@@ -18,4 +18,5 @@
 
 ## Dashboard 
 
-![image](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/3548c873-ab3c-467c-a9a6-70660eacc7f3)
+![youtube_dashboard-_2_](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/40fa06bd-decf-4473-bd77-d45c4e15b4b4)
+
