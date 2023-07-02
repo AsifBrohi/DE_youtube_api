@@ -3,10 +3,7 @@ from google.cloud import storage
 
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
-path_to_local_home = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
-file_name = "youtube_data.csv"
-
-def upload_to_gcs(bucket, object_name, local_file):
+def upload_to_gcs(bucket,object_name,file):
     """
     Ref: https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-python
     :param bucket: GCS bucket name
@@ -24,4 +21,5 @@ def upload_to_gcs(bucket, object_name, local_file):
     bucket = client.bucket(bucket)
 
     blob = bucket.blob(object_name)
-    blob.upload_from_filename(local_file)
+    blob.upload_from_filename(file)
+            
