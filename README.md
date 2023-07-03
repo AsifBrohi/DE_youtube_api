@@ -34,7 +34,8 @@ By leveraging the YouTube API and building a data pipeline, I can automate the p
 
 ## Database Schema 
 
-When looking at the raw CSV youtube data, I had to normalise the data into 3rd Normal Form and this resulted in the schema shown below. 
+After carefully analyzing the raw CSV data from YouTube, a systematic normalization process was performed to transform the data into a highly organized structure following the principles of the 3rd Normal Form. The result of this meticulous effort is a refined schema that optimizes data integrity, reduces redundancy, and improves overall data quality. By normalizing the data, we have achieved a streamlined and efficient representation of the YouTube dataset, enabling more accurate and insightful analysis of key metrics and relationships within the channel's content.
+ 
 ![Model databases - Page 1 (1)](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/208ea18a-5f22-4627-b37a-787c98fc20fd)
 
 
