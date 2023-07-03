@@ -59,6 +59,78 @@ Shown below is a DAG which contains all the task required for this pipeline and 
 ![image](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/3809c7fe-8d60-4a1e-b177-453e93216762)
 
 ## BigQuery
+Here are some SQL scripts on Bigquery to answer some questions in regards to the data 
+```sql
+---- What is the average view count across all videos?
+SELECT AVG(viewCount) as avg_viewCount  
+FROM `youtube-api-388114.youtube_api.fact_table` f;
+
+
+---- Which video has the highest view count?
+SELECT r.viewCount, r.title
+FROM `youtube-api-388114.youtube_api.raw_data` r
+WHERE r.viewCount = (SELECT MAX(viewCount) FROM `youtube-api-388114.youtube_api.raw_data`);
+
+
+---- Calculate the total number of likes for all the videos.
+SELECT sum(f.likeCount) as total_likecounts
+FROM `youtube-api-388114.youtube_api.fact_table` f
+;
+
+---- What is the average duration of the videos?
+SELECT avg(t.total_seconds) as avg_total_secs
+FROM `youtube-api-388114.youtube_api.dimension_duration` t;
+
+---- Is there a correlation between the duration of a video and its view count?
+select d.title,dt.minutes,f.viewCount
+FROM `youtube-api-388114.youtube_api.fact_table` f
+JOIN `youtube-api-388114.youtube_api.dimension_title`d on f.title_id = d.title_id
+JOIN `youtube-api-388114.youtube_api.dimension_duration`dt on f.duration_id = dt.duration_id
+
+ORDER BY viewCount DESC;
+
+---- Calculate the total duration of all the videos combined.
+select sum(dt.minutes) as Total_duration_videos
+FROM `youtube-api-388114.youtube_api.dimension_duration` dt
+;
+
+---- Is there a relationship between the published date of a video and its view count?
+SELECT t.date, f.viewCount
+FROM `youtube-api-388114.youtube_api.fact_table` f
+JOIN `youtube-api-388114.youtube_api.dimension_timestamp` t on f.publishedAt_id = t.publishedAt_id
+ORDER BY viewCount DESC
+;
+
+
+---- Compare the view counts and comment counts for each video
+SELECT d.title,f.viewCount,f.commentCount
+FROM  `youtube-api-388114.youtube_api.fact_table` f
+JOIN  `youtube-api-388114.youtube_api.dimension_title` d on f.title_id = d.title_id
+;
+```
+Created a table which is going to be used for the dashboard 
+```sql
+CREATE OR REPLACE TABLE `youtube-api-388114.youtube_api.tbl_analytics` as (
+SELECT
+c.channel_title_id, 
+f.video_id_id, 
+dt.title,
+t.date,
+t.time,
+d.minutes,
+f.likeCount,
+f.viewCount,
+f.commentCount
+
+from `youtube-api-388114.youtube_api.fact_table` f
+
+JOIN `youtube-api-388114.youtube_api.dimension_channel_title` c on f.channel_title_id=c.channel_title_id
+JOIN `youtube-api-388114.youtube_api.dimension_duration` d on f.duration_id=d.duration_id
+JOIN `youtube-api-388114.youtube_api.dimension_timestamp` t on f.publishedAt_id=t.publishedAt_id
+JOIN `youtube-api-388114.youtube_api.dimension_title` dt on f.title_id=dt.title_id
+JOIN `youtube-api-388114.youtube_api.dimension_video_id` v on f.video_id_id=v.video_id_id)
+;
+```
 
 ## Dashboard 
 
