@@ -1,4 +1,4 @@
 apache-airflow-providers-google
 google-api-python-client==2.87.0
-pandas
-pandas_gbq
+pandas==2.0.1
+pandas_gbq==0.19.2
