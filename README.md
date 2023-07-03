@@ -36,15 +36,15 @@ After carefully analyzing the raw CSV data from YouTube, a systematic normalizat
 
 ## Architecture 
 
-* **Task One**
+* **Step One**
     * Raw data is extracted using youtube API via python
-* **Task Two**
+* **Step Two**
     * Storing raw data as CSV file into GCS bucket 
-* **Task Three**
+* **Step Three**
     * Getting the path of CSV file object in GCS bucket and transforming the data , return a dictonary which contains all the dataframes
-* **Task Four** 
+* **Step Four** 
     * Load data onto bigquery 
-* **Task Five**
+* **Step Five**
     * Create a report on Google Data Studio 
 
 ![youtube_api_workflow (3) drawio](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/d2ba326e-a0e4-4e00-b8eb-e7d09de2a5fa)
@@ -52,7 +52,13 @@ After carefully analyzing the raw CSV data from YouTube, a systematic normalizat
 
 ## Airflow DAG
 
+A DAG (Directed Acyclic Graph) is the core concept of Airflow, collecting Tasks together, organized with dependencies and relationships to say how they should run.
+
+Shown below is a DAG which contains all the task required for this pipeline and the relationships between each task. 
+
 ![image](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/3809c7fe-8d60-4a1e-b177-453e93216762)
+
+## BigQuery
 
 ## Dashboard 
 
