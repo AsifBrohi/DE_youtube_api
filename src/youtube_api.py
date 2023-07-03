@@ -1,16 +1,18 @@
 from googleapiclient.discovery import build
 import pandas as pd
-
-api_key = "AIzaSyB6K1dPTHKB3e0bfAKoaAeU6BY3rEXcFo0"
+import os
+import re
+api_key = "your_api_key"
 api_service_name = "youtube"
 api_version = "v3"
-# channel_id="UCNAf1k0yIjyGu3k9BwAg3lg"
-channel_id="UCDvErgK0j5ur3aLgn6U-LqQ"
+
 # Get credentials and create an API client
+
 youtube = build(
 api_service_name, api_version, developerKey=api_key)
 
-def extract_youtube_api(youtube:str, playlist_id:str)->pd.DataFrame:
+playlist_id = "playlist_id"
+def extract_youtube_api(youtube:str, playlist_id:str):
     data = []
     next_page_token = None
 
@@ -40,7 +42,7 @@ def extract_youtube_api(youtube:str, playlist_id:str)->pd.DataFrame:
         response = request.execute() 
 
         for video in response['items']:
-            stats_to_keep = {'snippet': ['channelTitle', 'title', 'description', 'tags', 'publishedAt'],
+            stats_to_keep = {'snippet': ['channelTitle', 'title', 'tags', 'publishedAt'],
                              'statistics': ['viewCount', 'likeCount', 'favouriteCount', 'commentCount'],
                              'contentDetails': ['duration', 'definition', 'caption']
                             }
@@ -51,13 +53,20 @@ def extract_youtube_api(youtube:str, playlist_id:str)->pd.DataFrame:
             for key in stats_to_keep.keys():
                 for value in stats_to_keep[key]:
                     try:
-                        video_info[value] = video[key][value]
+                    # Remove special characters and emojis from description and tags
+                        if value in ['title', 'tags']:
+                            cleaned_text = re.sub(r'[^\w\s]', '', video[key][value])
+                            video_info[value] = cleaned_text
+                        else:
+                            video_info[value] = video[key][value]
                     except:
                         video_info[value] = None
-
             all_video_info.append(video_info)
     
-    df=pd.DataFrame(all_video_info)
-    return df.to_csv("youtube_data.csv")
-playlist_id = "UUChmJrVa8kDg05JfCmxpLRw"
+    df = pd.DataFrame(all_video_info)
+    
+    return df.to_csv("raw_youtube_data.csv")
+    
 extract_youtube_api(youtube,playlist_id)
+
+

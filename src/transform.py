@@ -1,16 +1,12 @@
 import pandas as pd
-from youtube_api import df
 
 
-def transform_main():
-    data_dict=transform_data(df)
-    fact_table = pd.DataFrame(data_dict["fact_table"]())
-    print(fact_table.head())
-
-def transform_data(df:pd.DataFrame)->dict:
+def transform_data(file_path)->dict:
+    df=pd.read_csv(file_path)
+    
     df["publishedAt"]=pd.to_datetime(df["publishedAt"])
 # creating dimension table video_id
-    dim_video_id = df.drop(columns=["channelTitle","title","description",
+    dim_video_id = df.drop(columns=["channelTitle","title",
                                     "tags","publishedAt","viewCount","likeCount",
                                     "favouriteCount","commentCount","duration",
                                     "definition","caption"])
@@ -22,7 +18,7 @@ def transform_data(df:pd.DataFrame)->dict:
     dim_video_id = dim_video_id.reindex(columns=["video_id_id","video_id"])
 
     # creating dimension channel title
-    dim_channel_title = df.drop(columns=["video_id","title","description",
+    dim_channel_title = df.drop(columns=["video_id","title",
                                     "tags","publishedAt","viewCount","likeCount",
                                     "favouriteCount","commentCount","duration",
                                     "definition","caption"])
@@ -32,7 +28,7 @@ def transform_data(df:pd.DataFrame)->dict:
     dim_channel_title= dim_channel_title.reindex(columns=["channel_title_id","channelTitle"])
 
     # creating dimension title 
-    dim_title = df.drop(columns=["video_id","channelTitle","description",
+    dim_title = df.drop(columns=["video_id","channelTitle",
                                     "tags","publishedAt","viewCount","likeCount",
                                     "favouriteCount","commentCount","duration",
                                     "definition","caption"])
@@ -42,7 +38,7 @@ def transform_data(df:pd.DataFrame)->dict:
     dim_title=dim_title.reindex(columns=["title_id","title"])
 
     # creating timestamp dimension 
-    dim_timestamp = df.drop(columns=["video_id","title","channelTitle","description",
+    dim_timestamp = df.drop(columns=["video_id","title","channelTitle",
                                     "tags","viewCount","likeCount",
                                     "favouriteCount","commentCount","duration",
                                     "definition","caption"])
@@ -56,7 +52,7 @@ def transform_data(df:pd.DataFrame)->dict:
     
 
     # creating dimenstion duration table 
-    dim_duration = df.drop(columns=["video_id","title","channelTitle","description",
+    dim_duration = df.drop(columns=["video_id","title","channelTitle",
                                     "tags","publishedAt","viewCount","likeCount",
                                     "favouriteCount","commentCount",
                                     "definition","caption"])
@@ -83,15 +79,14 @@ def transform_data(df:pd.DataFrame)->dict:
               ]]                     
                       
 
-    return {"dim_video_id":dim_video_id.to_dict,
-            "dim_channel_title":dim_channel_title.to_dict,
-            "dim_title":dim_title.to_dict,
-            "dim_timestamp":dim_timestamp.to_dict,
-            "dim_duration":dim_duration.to_dict,
-            "fact_table":fact_table.to_dict
+    data_dict= {"dim_video_id":dim_video_id.to_dict(),
+            "dim_channel_title":dim_channel_title.to_dict(),
+            "dim_title":dim_title.to_dict(),
+            "dim_timestamp":dim_timestamp.to_dict(),
+            "dim_duration":dim_duration.to_dict(),
+            "fact_table":fact_table.to_dict()
             
             }
 
-if __name__=="__main__":
-    transform_main()
+    return data_dict
 
