@@ -2,18 +2,29 @@ from googleapiclient.discovery import build
 import pandas as pd
 import os
 import re
-api_key = "AIzaSyB6K1dPTHKB3e0bfAKoaAeU6BY3rEXcFo0"
+import csv
+api_key = "your_api_key"
 api_service_name = "youtube"
 api_version = "v3"
-# channel_id="UCNAf1k0yIjyGu3k9BwAg3lg"
-channel_id="UCDvErgK0j5ur3aLgn6U-LqQ"
+
 # Get credentials and create an API client
 
 youtube = build(
 api_service_name, api_version, developerKey=api_key)
 playlist_id = "UUChmJrVa8kDg05JfCmxpLRw"
 
-def extract_youtube_api(youtube, playlist_id):
+def extract_youtube_api(youtube:build.resource, playlist_id:str)->csv:
+    
+    ''' Returning a csv file from using youtube api
+    :param youtube :build.resource - It is an API client
+    :param playlist_id :str - the playlist id for the your youtube channel
+    :return : csv - returns a csv file 
+
+    This function takes two arguments youtube api client and playlist_id
+    and keeps the stats we need and appends them into empty list , creates a dataframe,
+    turns dataframe and returns dataframe into csv file. 
+    '''
+    
     data = []
     next_page_token = None
 
@@ -66,7 +77,6 @@ def extract_youtube_api(youtube, playlist_id):
             all_video_info.append(video_info)
 
     df = pd.DataFrame(all_video_info)
-    print("DataFrame columns:", df.columns)  # Print column names
     csv_file_path = os.path.abspath("raw_youtube_data.csv")
     df.to_csv(csv_file_path)
 
