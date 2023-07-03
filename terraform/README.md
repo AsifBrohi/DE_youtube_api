@@ -5,6 +5,7 @@ The set of files used to describe infrastructure in Terraform is known as a Terr
 
 Here's a basic `main.tf` file written in Terraform language with all of the necesary info to describe basic infrastructure:
 
+```json
 `terraform {
   required_providers {
     google = {
@@ -25,7 +26,7 @@ provider "google" {
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }`
-
+```
 - Terraform divides information into ***blocks***, which are defined within braces (`{}`), similar to Java or C++. However, unlike these languages, statements are not required to end with a semicolon `;` but use linebreaks instead.
 - By convention, arguments with single-line values in the same nesting level have their equal signs (`=`) aligned for easier reading.
 - There are 3 main blocks: `terraform`, `provider` and `resource`. There must only be a single `terraform` block but there may be multiple `provider` and `resource` blocks.
@@ -53,11 +54,13 @@ Besides these 3 blocks, there are additional available blocks:
 
 - ***Input variables*** block types are useful for customizing aspects of other blocks without altering the other blocks' source code. They are often referred to as simply *variables*. They are passed at runtime.
     
+    ```json
     `variable "region" {
         description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
         default = "europe-west6"
         type = string
     }`
+    ```
     
     - Description:
         - An input variable block starts with the type `variable` followed by a name of our choosing.
@@ -72,12 +75,12 @@ Besides these 3 blocks, there are additional available blocks:
         `region = var.region`
         
 - ***Local values*** block types behave more like constants.
-    
+    ```json
     `locals{
         region  = "us-central1"
         zone    = "us-central1-c"
     }`
-    
+    ```
     - Description:
         - Local values may be grouped in one or more blocks of type `locals`. Local values are often grouped according to usage.
         - Local values are simpler to declare than input variables because they are only a key-value pair.
