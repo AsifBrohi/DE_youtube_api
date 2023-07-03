@@ -59,7 +59,7 @@ Shown below is a DAG which contains all the task required for this pipeline and 
 ![image](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/3809c7fe-8d60-4a1e-b177-453e93216762)
 
 ## BigQuery
-Here are some SQL scripts on Bigquery to answer some questions in regards to the data 
+Here are some SQL scripts on Bigquery to answer questions about the data
 ```sql
 ---- What is the average view count across all videos?
 SELECT AVG(viewCount) as avg_viewCount  
@@ -108,7 +108,9 @@ FROM  `youtube-api-388114.youtube_api.fact_table` f
 JOIN  `youtube-api-388114.youtube_api.dimension_title` d on f.title_id = d.title_id
 ;
 ```
-Created a table which is going to be used for the dashboard 
+
+**Created a table using SQL script which will be used for analytics in Google Data Studio**
+
 ```sql
 CREATE OR REPLACE TABLE `youtube-api-388114.youtube_api.tbl_analytics` as (
 SELECT
@@ -133,6 +135,8 @@ JOIN `youtube-api-388114.youtube_api.dimension_video_id` v on f.video_id_id=v.vi
 ```
 
 ## Dashboard 
+
+This is the final output 
 
 ![youtube_dashboard-_2_](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/40fa06bd-decf-4473-bd77-d45c4e15b4b4)
 
