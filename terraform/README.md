@@ -5,8 +5,8 @@ The set of files used to describe infrastructure in Terraform is known as a Terr
 
 Here's a basic `main.tf` file written in Terraform language with all of the necesary info to describe basic infrastructure:
 
-```json
-`terraform {
+```python
+terraform {
   required_providers {
     google = {
       source = "hashicorp/google"
@@ -25,7 +25,7 @@ provider "google" {
 
 resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
-}`
+}
 ```
 - Terraform divides information into ***blocks***, which are defined within braces (`{}`), similar to Java or C++. However, unlike these languages, statements are not required to end with a semicolon `;` but use linebreaks instead.
 - By convention, arguments with single-line values in the same nesting level have their equal signs (`=`) aligned for easier reading.
@@ -54,12 +54,12 @@ Besides these 3 blocks, there are additional available blocks:
 
 - ***Input variables*** block types are useful for customizing aspects of other blocks without altering the other blocks' source code. They are often referred to as simply *variables*. They are passed at runtime.
     
-    ```json
-    `variable "region" {
+    ```python
+    variable "region" {
         description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
         default = "europe-west6"
         type = string
-    }`
+    }
     ```
     
     - Description:
@@ -75,11 +75,11 @@ Besides these 3 blocks, there are additional available blocks:
         `region = var.region`
         
 - ***Local values*** block types behave more like constants.
-    ```json
-    `locals{
+    ```python
+    locals{
         region  = "us-central1"
         zone    = "us-central1-c"
-    }`
+    }
     ```
     - Description:
         - Local values may be grouped in one or more blocks of type `locals`. Local values are often grouped according to usage.
