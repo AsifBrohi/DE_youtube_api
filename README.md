@@ -35,7 +35,8 @@ By leveraging the YouTube API and building a data pipeline, I can automate the p
 ## Database Schema 
 
 When looking at the raw CSV youtube data, I had to normalise the data into 3rd Normal Form and this resulted in the schema shown below. 
-![Model databases - Page 1](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/73723a2d-1cef-40df-a6d6-8fef38680050)
+![Model databases - Page 1 (1)](https://github.com/AsifBrohi/DE_youtube_api/assets/52333702/208ea18a-5f22-4627-b37a-787c98fc20fd)
+
 
 
 ## Architecture 
