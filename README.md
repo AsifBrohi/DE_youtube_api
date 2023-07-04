@@ -19,6 +19,7 @@ By leveraging the YouTube API and building a data pipeline, I can automate the p
 * **Terraform**
     * Terraform is an infrastructure-as-code tool that allows you to define and manage your infrastructure resources.
       With Terraform, you can define your GCP resources as code using the HashiCorp Configuration Language (HCL). This enables you to version control your infrastructure and easily replicate it across different environments.
+      https://github.com/AsifBrohi/DE_youtube_api/blob/main/terraform/README.md
 * **Google Cloud Storage**
     * Google Cloud Storage (GCS): You can use GCS as a storage solution to store raw data, intermediate outputs, or backup files related to your YouTube channel.
 * **Google Bigquery** 
