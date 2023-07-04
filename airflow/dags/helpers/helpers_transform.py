@@ -2,6 +2,15 @@ import pandas as pd
 
 
 def transform_data(file_path)->dict:
+
+    ''' Returning a dict with all the different tables
+    :param:file_path:str -the path in which gcs bucket object is located
+    :return:dict - returns a dict
+
+    This function takes in a str file_path to a csv object and transforms data
+    and appends to a dictionary 
+
+    '''
     df = pd.read_csv(file_path,index_col=0)
     df["publishedAt"]=pd.to_datetime(df["publishedAt"])
 # creating raw data df 

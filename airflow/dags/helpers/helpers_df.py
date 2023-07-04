@@ -1,5 +1,12 @@
 import pandas as pd 
 def turn_dict_raw_df(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''
     try:
         df=pd.DataFrame.from_dict(dict["raw_df"])
         return df
@@ -8,6 +15,13 @@ def turn_dict_raw_df(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
         
 def turn_dict_dim_video_id(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''
     try:
         df = pd.DataFrame.from_dict(dict["dim_video_id"])
         return df
@@ -16,6 +30,13 @@ def turn_dict_dim_video_id(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
 
 def turn_dict_dim_channel_title(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''    
     try:
         df = pd.DataFrame.from_dict(dict["dim_channel_title"])
         return df
@@ -24,6 +45,13 @@ def turn_dict_dim_channel_title(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
 
 def turn_dict_dim_title(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''    
     try:
         df = pd.DataFrame.from_dict(dict["dim_title"])
         return df
@@ -32,6 +60,13 @@ def turn_dict_dim_title(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
 
 def turn_dict_timestamp(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''    
     try:
         df = pd.DataFrame.from_dict(dict["dim_timestamp"])
         df['time'] = pd.to_datetime(df['time'], format='%H:%M:%S').dt.strftime('%H:%M:%S')
@@ -43,6 +78,13 @@ def turn_dict_timestamp(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
 
 def turn_dict_duration(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''
     try:
         df = pd.DataFrame.from_dict(dict["dim_duration"])
         return df
@@ -51,6 +93,13 @@ def turn_dict_duration(dict:dict)->pd.DataFrame:
         print("DataFrame is empty")
 
 def turn_dict_fact(dict:dict)->pd.DataFrame:
+    '''Returns a dataframe
+    :param:dict:dict - A dictionary 
+    :return:pd.dataframe - Returns a dataframe 
+
+    This function takes keys & values from the dictionary and turns 
+    it into a dataframe 
+    '''
     try:
         df = pd.DataFrame.from_dict(dict["fact_table"])
         return df
